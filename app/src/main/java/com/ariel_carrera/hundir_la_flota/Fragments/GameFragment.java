@@ -83,7 +83,7 @@ public class GameFragment extends Fragment {
     private int agua = 0;
     private int numIntentos = 0;
 
-    private boolean debugMode = false;
+    private boolean debugMode = true;
 
     private Chronometer cronometro;
 
@@ -475,6 +475,9 @@ public class GameFragment extends Fragment {
                                 if (barcos.get(k).tocado == barcos.get(k).getLongitud()) {
                                     barcos.get(k).setHundido(true);
                                     estadoBarco = "Hundido barco de " + barcos.get(k).getLongitud();
+                                    for(Point p : barcos.get(k).coordenadas){
+                                        ivCell[p.x][p.y].setImageDrawable(getResources().getDrawable(R.drawable.destruido));
+                                    }
                                 }
 
                                 // Si el barco es hundido
