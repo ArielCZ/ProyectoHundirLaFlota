@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context=".Views.RankingActivity">
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="160dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/navigationbuttons"
+        android:text="@string/volver"
+        android:textColor="@color/icons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/listViewRanking"
+        android:layout_width="match_parent"
+        android:layout_height="454dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/labels"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/ranking"
+        android:textColor="@color/icons"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="21dp"
+        android:text="@string/rankingNombre"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toTopOf="@+id/listViewRanking"
+        app:layout_constraintEnd_toStartOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/rankingTiempo"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toTopOf="@+id/listViewRanking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="101dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="22dp"
+        android:text="@string/rankingIntentos"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintBottom_toTopOf="@+id/listViewRanking"
+        app:layout_constraintEnd_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

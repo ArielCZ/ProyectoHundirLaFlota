@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Hundir_La_Flota</string>
+    <string name="Jugar">Jugar</string>
+    <string name="Ranking">Ranking</string>
+    <string name="Ayuda">Ayuda</string>
+    <string name="AcercaDe">Acerda de</string>
+    <string name="titulo">Hundir La Flota</string>
+    <string name="volver">Volver</string>
+    <string name="instrucciones">Instrucciones de juego</string>
+    <string name="Autor">Desarrolado por: Ariel Carrera</string>
+    <string name="Modulo">Programación multimedia y dispositivos móviles</string>
+    <string name="curso">2º Desarrollo de aplicaciones multiplataforma</string>
+    <string name="ranking">Ranking jugadores</string>
+    <string name="rankingNombre">Nombre</string>
+    <string name="rankingIntentos">Nº Intentos</string>
+    <string name="rankingTiempo">Tiempo</string>
+    <string name="intentos">Número de intentos</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="barco">Barco</string>
+    <string name="guardar">Guardar Partida</string>
+    <string name="nombreGuardar">Introduce tu nombre</string>
+    <string name="comoJugar">El juego consiste en hundir todos los barcos que se encuentran en el tablero.
+    Para ello el jugador irá disparando bombas por cada casilla con un límite de 40 intentos.
+    </string>
+    <string name="comoJugar2">Por cada disparo, si la casilla está en blanco responderá "agua" y no podrá volver a ser pulsada.
+        Si en la casilla se encuentra parte de un barco responderá "tocado" y el jugador tiene derecho a un nuevo disparo.
+    </string>
+    <string name="comoJugar3">Si en la casilla se encuentra la última parte de un barco responderá "hundido", se actualizará
+    el números de barcos restantes y también tiene derecho a un nuevo disparo.
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

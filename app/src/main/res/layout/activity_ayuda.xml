@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Views.AyudaActivity">
+
+    <TextView
+        android:id="@+id/txtContenido3"
+        android:layout_width="336dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="39dp"
+        android:text="@string/comoJugar3"
+        android:textColor="@color/colorPrimaryLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtContenido2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="218dp"
+        android:layout_height="163dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtContenido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+        app:srcCompat="@drawable/imagenapp" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="143dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginEnd="134dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_buttons"
+        android:text="@string/volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="102dp"
+        android:text="@string/instrucciones"
+        android:textColor="@color/colorPrimaryLight"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="159dp"
+        android:text="@string/titulo"
+        android:textColor="@color/icons"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtContenido"
+        android:layout_width="336dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="36dp"
+        android:text="@string/comoJugar"
+        android:textColor="@color/colorPrimaryLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/txtContenido2"
+        android:layout_width="336dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="36dp"
+        android:text="@string/comoJugar2"
+        android:textColor="@color/colorPrimaryLight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtContenido" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
