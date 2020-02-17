@@ -1,17 +1,29 @@
 'use strict'
 var Jugador = require('../models/player');
+var Pusher = require('pusher');
+var pusher = new Pusher({
+    appId: '948844',
+    key: '6471bfe60094a6c3c7c1',
+    secret: 'af90d439248396945b17',
+    cluster: 'eu',
+    encrypted: true
+});
 var controller = {
-    savePlayer: function(req, res){
+    savePlayer: function (req, res) {
         var jugador = new Jugador();
         var params = req.body;
         jugador.nombre = params.nombre;
         jugador.intentos = params.intento;
         jugador.tiempo = params.tiempo;
         jugador.image = params.image;
-        jugador.save();
+        jugador.save().then(player => {
+            pusher.trigger('player', 'player-save', {
+                player:player
+            });
+        });
     },
-    getPlayers: function(req, res){
-        Jugador.find((err, players)=>{
+    getPlayers: function (req, res) {
+        Jugador.find((err, players) => {
             if (err) return res.status(500).send({
                 message: 'Error al devolver los jugadores'
             });

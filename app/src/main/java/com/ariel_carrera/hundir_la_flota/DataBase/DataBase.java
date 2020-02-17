@@ -53,31 +53,31 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     // Función que devuelve la lista de los jugadores que han guardado su partida
-    public List<Player> LeerJugadores(){
-        SQLiteDatabase db = getWritableDatabase();
-        List<Player> lista_jugadores = new ArrayList<Player>();
-        String[] result = {"_id","nombre","intentos","tiempo"};
-        try{
-            Cursor c = db.query("Ranking",result,null,null,null,null,"intentos," + "tiempo",null);
-            if (c != null){
-                try{
-                    if (c.moveToNext()){
-                        c.moveToFirst();
-                        do {
-                            Player j = new Player(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3));
-                            lista_jugadores.add(j);
-                        } while (c.moveToNext());
-                    } else{
-                        // Vacío
-                    }
-                } finally {
-                    c.close();
-                    db.close();
-                }
-            }
-        } catch (SQLiteException e) {
-            e.printStackTrace();
-        }
-        return lista_jugadores;
-    }
+//    public List<Player> LeerJugadores(){
+//        SQLiteDatabase db = getWritableDatabase();
+//        List<Player> lista_jugadores = new ArrayList<Player>();
+//        String[] result = {"_id","nombre","intentos","tiempo"};
+//        try{
+//            Cursor c = db.query("Ranking",result,null,null,null,null,"intentos," + "tiempo",null);
+//            if (c != null){
+//                try{
+//                    if (c.moveToNext()){
+//                        c.moveToFirst();
+//                        do {
+//                            Player j = new Player(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3));
+//                            lista_jugadores.add(j);
+//                        } while (c.moveToNext());
+//                    } else{
+//                        // Vacío
+//                    }
+//                } finally {
+//                    c.close();
+//                    db.close();
+//                }
+//            }
+//        } catch (SQLiteException e) {
+//            e.printStackTrace();
+//        }
+//        return lista_jugadores;
+//    }
 }

@@ -5,7 +5,7 @@ public class Player {
     private String nombre;
     private int intentos;
     private int tiempo;
-    private int id;
+    private String _id;
     private int idImagen;
 
     public int getIdImagen() {
@@ -42,23 +42,23 @@ public class Player {
         this.tiempo = tiempo;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(String id) {
+        this._id = id;
     }
 
-    public Player(int id, String nombre, int intentos, int tiempo){
-        this.id = id;
+    public Player(String id, String nombre, int intentos, int tiempo){
+        this._id = id;
         this.nombre = nombre;
         this.intentos = intentos;
         this.tiempo = tiempo;
     }
-    public Player(int idImagen, int id, String nombre, int intentos, int tiempo){
+    public Player(int idImagen, String id, String nombre, int intentos, int tiempo){
         this.idImagen = idImagen;
-        this.id = id;
+        this._id = id;
         this.nombre = nombre;
         this.intentos = intentos;
         this.tiempo = tiempo;
