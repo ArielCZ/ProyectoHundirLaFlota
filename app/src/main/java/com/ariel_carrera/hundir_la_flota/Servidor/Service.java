@@ -32,13 +32,16 @@ public class Service {
 
     public Service(Context context){
         this.context = context;
+        Conectar();
+    }
+
+    public void Conectar(){
         if (isConnected()){
             new DownloadWebpageTask().execute(serverURL);
         } else {
             Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public boolean isConnected(){
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

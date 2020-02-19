@@ -2,6 +2,7 @@ package com.ariel_carrera.hundir_la_flota.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -99,21 +100,32 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
             }
         }, ConnectionState.ALL);
 
-        Channel channel = pusher.subscribe("player");
+        Channel channel = pusher.subscribe("playerschannel");
 
         channel.bind("player-save", new SubscriptionEventListener() {
 
             @Override
             public void onEvent(PusherEvent event) {
                 System.out.println("Received event with data: " + event.toString());
-                Gson gson = new Gson();
-                JsonParser jsonParser = new JsonParser();
-                JsonObject jsonObject = (JsonObject) jsonParser.parse(event.toString());
-                JsonElement jsonElement = (JsonElement) jsonObject.get("players");
-                Player p = gson.fromJson(jsonElement, Player.class);
-                System.out.println(p.getNombre());
-            }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        service.Conectar();
+                        if (service.isConnected()){
+                            try{
+                                Thread.sleep(300);
+                                lista_jugadores = service.leerDatos();
+                                myAdapter = new MyAdapter(RankingActivity.this,R.layout.ranking_item,lista_jugadores);
+                                listview.setAdapter(myAdapter);
+                                myAdapter.notifyDataSetChanged();
+                                Toast.makeText(RankingActivity.this, "Se ha agregado una nueva puntuación", Toast.LENGTH_SHORT).show();
+                            } catch (Exception ex){
 
+                            }
+                        }
+                    }
+                });
+            }
         });
 
 
