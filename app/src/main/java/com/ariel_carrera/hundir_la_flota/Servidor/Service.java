@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,12 +31,16 @@ public class Service {
     static String webPage = "";
     static String serverURL = "http://172.30.0.179:3700/api/get-players";
 
-    public Service(Context context){
+    public static final Service SERVICE = new Service();
+
+    public static Service getInstance() {return SERVICE;}
+
+    public void SetContext(Context context){
         this.context = context;
-        Conectar();
     }
 
-    public void Conectar(){
+
+    public void getData(){
         if (isConnected()){
             new DownloadWebpageTask().execute(serverURL);
         } else {
@@ -69,10 +74,10 @@ public class Service {
         try {
             URL url = new URL(serverURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //conn.setReadTimeout(10000);
-            //conn.setConnectTimeout(15000);
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
             conn.setRequestMethod("GET");
-            //conn.setDoInput(true);
+            conn.setDoInput(true);
             // Inicia la consulta
             conn.connect();
             int response = conn.getResponseCode();
@@ -109,5 +114,45 @@ public class Service {
             return  null;
         }
     }
+
+
+    public String guardar(String nombre,Integer intentos,String tiempo) {
+        try {
+            //Url
+            URL url = new URL(serverURL + "save-player");
+            //Open connection
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            //Set Request Method
+            con.setReadTimeout(10000);
+            con.setConnectTimeout(15000);
+            con.setRequestMethod("POST");
+            con.setDoInput(true);
+            con.setDoOutput(true);
+
+            String jsonInputString = "{'name': 'Upendra ', 'job ': 'Programmer'}";
+
+            OutputStream os = con.getOutputStream();
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
+
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+            StringBuilder response = new StringBuilder();
+            String responseLine = null;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println(response.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+
+    }
+
+
+
 }
 

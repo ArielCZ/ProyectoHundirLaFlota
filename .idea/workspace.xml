@@ -10,10 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="35c78a25-1a5b-4f5c-b8fe-2275cd87d92c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/DataBaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
@@ -22,8 +24,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/RankingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/RankingActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
@@ -57,29 +58,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/RankingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="125" column="21" lean-forward="true" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+            <state relative-caret-position="1088">
+              <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3700#4641#0" expanded="true" />
-                <element signature="e#3925#4614#0" expanded="true" />
-                <element signature="e#4640#4641#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state relative-caret-position="731">
+              <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3601#3609#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/DataBaseListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#695#696#0" expanded="true" />
+                <element signature="e#731#732#0" expanded="true" />
+                <element signature="e#790#791#0" expanded="true" />
+                <element signature="e#840#841#0" expanded="true" />
+                <element signature="e#877#878#0" expanded="true" />
+                <element signature="e#910#911#0" expanded="true" />
+                <element signature="e#963#964#0" expanded="true" />
+                <element signature="e#1007#1008#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/DataBase/DataBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="39" column="77" lean-forward="true" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#843#844#0" expanded="true" />
+                <element signature="e#900#901#0" expanded="true" />
+                <element signature="e#961#962#0" expanded="true" />
+                <element signature="e#1002#1003#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,16 +202,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Model/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/DataBase/DataBase.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Pusher.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/RankingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/DataBaseListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
+    <option name="x" value="621" />
+    <option name="width" value="1306" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -175,18 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -199,6 +233,40 @@
               <item name="Hundir_La_Flota" type="b2602c69:ProjectViewProjectNode" />
               <item name="Hundir_La_Flota" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="hundir_la_flota" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="hundir_la_flota" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="DataBase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Hundir_La_Flota" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
@@ -343,12 +411,12 @@
       <window_info anchor="bottom" id="Run" order="0" weight="0.32827735" />
       <window_info anchor="bottom" id="Logcat" order="1" weight="0.32932165" />
       <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.25785482" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.25460455" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50053304" side_tool="true" weight="0.3336945" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.19609967" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.19609967" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32932165" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.32932165" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -378,27 +446,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ranking_items.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="11" lean-forward="true" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v24/items.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_buttons.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -421,12 +468,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_acerca_de.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/AyudaActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -439,71 +486,71 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/activity_game.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-land/fragment_game.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_game.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="28" selection-end-column="15" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_data.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="221" selection-end-column="52" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ayuda.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_game.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="21" selection-end-column="14" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large-land/fragment_data.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/fragment_data.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="35" lean-forward="true" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large/activity_game.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="28" selection-end-column="15" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large-land/fragment_game.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-large-land/activity_game.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/ranking_item.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ranking.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Model/Boat.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -528,12 +575,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="114" column="49" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -580,84 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
           <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5487#5488#0" expanded="true" />
-            <element signature="e#5511#5512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="7791" selection-start-line="7791" selection-end-line="7791" />
-          <folding>
-            <element signature="e#331150#331151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/servertransaction/LaunchActivityItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/servertransaction/TransactionExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="189" selection-start-line="189" selection-end-line="189" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/os/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="2036" selection-start-line="2036" selection-end-line="2036" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/Instrumentation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="1300" selection-start-line="1300" selection-end-line="1300" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/DataBase/DataBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#843#844#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="e#961#962#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -711,26 +680,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/servertransaction/LaunchActivityItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+        <state relative-caret-position="233">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/servertransaction/TransactionExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/os/Looper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="214" selection-start-line="214" selection-end-line="214" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/os/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="2036" selection-start-line="2036" selection-end-line="2036" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/Instrumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="1300" selection-start-line="1300" selection-end-line="1300" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="7791" selection-start-line="7791" selection-end-line="7791" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3601#3609#0" expanded="true" />
+            <element signature="e#331150#331151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pusher/pusher-java-client/2.0.2/63cd97199fc63aee3af486620b6f54329c909e20/pusher-java-client-2.0.2-sources.jar!/com/pusher/client/util/Factory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.pusher/pusher-java-client/2.0.2/63cd97199fc63aee3af486620b6f54329c909e20/pusher-java-client-2.0.2-sources.jar!/com/pusher/client/channel/impl/ChannelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#4159#4160#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Views/RankingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="125" column="21" lean-forward="true" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+        <state relative-caret-position="1088">
+          <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3700#4641#0" expanded="true" />
-            <element signature="e#3925#4614#0" expanded="true" />
-            <element signature="e#4640#4641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="104" column="43" selection-start-line="104" selection-start-column="43" selection-end-line="104" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/DataBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="35" column="49" lean-forward="true" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#695#696#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+            <element signature="e#790#791#0" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
+            <element signature="e#877#878#0" expanded="true" />
+            <element signature="e#910#911#0" expanded="true" />
+            <element signature="e#963#964#0" expanded="true" />
+            <element signature="e#1007#1008#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/DataBase/DataBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="39" column="77" lean-forward="true" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#843#844#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ariel_carrera/hundir_la_flota/Servidor/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

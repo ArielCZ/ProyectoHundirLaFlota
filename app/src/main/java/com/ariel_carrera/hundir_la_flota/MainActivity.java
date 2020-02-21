@@ -15,9 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ariel_carrera.hundir_la_flota.Adapter.MyAdapter;
 import com.ariel_carrera.hundir_la_flota.Fragments.DataFragment;
 import com.ariel_carrera.hundir_la_flota.Fragments.GameFragment;
 import com.ariel_carrera.hundir_la_flota.Model.Player;
+import com.ariel_carrera.hundir_la_flota.Servidor.DataBaseListener;
+import com.ariel_carrera.hundir_la_flota.Servidor.Service;
 import com.ariel_carrera.hundir_la_flota.Views.AcercaDeActivity;
 import com.ariel_carrera.hundir_la_flota.Views.AyudaActivity;
 import com.ariel_carrera.hundir_la_flota.Views.GameActivity;
@@ -60,7 +63,7 @@ import com.pusher.client.connection.ConnectionEventListener;
 import com.pusher.client.connection.ConnectionState;
 import com.pusher.client.connection.ConnectionStateChange;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnJugar, btnRanking, btnAcercaDe, btnAyuda;
 
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnJugar = (Button)findViewById(R.id.btnJugar);
+        btnJugar = (Button) findViewById(R.id.btnJugar);
         btnJugar.setOnClickListener(this);
 
         btnAyuda = (Button) findViewById(R.id.btnAyuda);
@@ -89,12 +92,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnRanking.setOnClickListener(this);
 
 
-
         btnServer = (Button) findViewById(R.id.btnServer);
         btnServer.setOnClickListener(this);
 
         txtInfo = (TextView) findViewById(R.id.txtInfo);
 
+        Service.getInstance().SetContext(getApplicationContext());
+        Service.getInstance().isConnected();
+        Service.getInstance().getData();
+
+        //DataBaseListener.getInstance();
+        DataBaseListener.getInstance().Connect();
+        txtInfo.setText(String.valueOf(DataBaseListener.getInstance().numJugadores));
+
+
+
+        if (!DataBaseListener.getInstance().isBindedMain()){
+            DataBaseListener.getInstance().getChannel().bind("player-save", new SubscriptionEventListener() {
+
+                @Override
+                public void onEvent(PusherEvent event) {
+                    System.out.println("Received event with data: " + event.toString());
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            DataBaseListener.getInstance().setBindedMain(true);
+                            Service.getInstance().getData();
+                            if (Service.getInstance().isConnected()){
+
+                                try{
+                                    Toast.makeText(getApplicationContext(), "Ha habido un cambio en el ranking", Toast.LENGTH_SHORT).show();
+                                } catch (Exception ex){
+
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        //DataBaseListener.getInstance().getChannel().unbind();
 
     }
 
@@ -118,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(Ranking);
                 break;
             case R.id.btnServer:
-                boolean conectado = isConnected();
 
             default:
                 break;
@@ -127,61 +165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
     }
 
-    public boolean isConnected(){
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()){
-            Toast.makeText(this,"si", Toast.LENGTH_SHORT).show();
-            return true;
-        }else {
-            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
-            return  false;
-        }
-    }
-
-    public class DownloadWebpageTask extends AsyncTask<String, Void, String>{
-        @Override
-        protected String doInBackground(String... urls){
-            try {
-                return downloadUrl(urls[0]);
-            } catch (IOException e){
-                return "No se puede recuperar la página web. URL puede no ser válida";
-            }
-        }
-    }
-
-    private String downloadUrl(String myurl) throws IOException{
-        InputStream is = null;
-        try {
-            URL url = new URL(serverURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            //conn.setReadTimeout(10000);
-            //conn.setConnectTimeout(15000);
-            conn.setRequestMethod("GET");
-            //conn.setDoInput(true);
-            // Inicia la consulta
-            conn.connect();
-            int response = conn.getResponseCode();
-            Log.d("DT: ", "La respuesta es: " + response);
-            is = conn.getInputStream();
-            // Para descargar la página web completa
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            webPage = "";
-            String data = "";
-            while ((data = reader.readLine()) != null){
-                webPage += data +"\n";
-            }
-            return webPage;
-        } finally {
-            if (is != null){
-                is.close();
-            }
-        }
-    }
 
 
 
