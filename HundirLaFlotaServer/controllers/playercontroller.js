@@ -1,6 +1,7 @@
 'use strict'
 var Jugador = require('../models/player');
 var Pusher = require('pusher');
+var onlinePlayers = [];
 var pusher = new Pusher({
     appId: '948844',
     key: '6471bfe60094a6c3c7c1',
@@ -46,6 +47,20 @@ var controller = {
                 players
             });
         });
+    },
+
+    getOnlinePlayers : function(req, res){
+        var num = this.onlinePlayers.lenght;
+        return res.status(200).send({
+            data: num
+        });
+    },
+
+    addOnlinePlayer: function(req, res){
+        this.onlinePlayers.push('jugador');
     }
+
+
+
 }
 module.exports = controller;
