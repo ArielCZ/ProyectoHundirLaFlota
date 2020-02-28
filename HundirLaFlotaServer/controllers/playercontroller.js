@@ -16,11 +16,23 @@ var controller = {
         jugador.intentos = params.intento;
         jugador.tiempo = params.tiempo;
         jugador.image = params.image;
-        jugador.save().then(player => {
-            pusher.trigger('player', 'player-save', {
-                player:player
+        jugador.save((err, playerStored)=>{
+            if (err) return res.status(500).send({
+                message: 'Error al guardar'
             });
-        });
+            if (!playerStored) return res.status(404).send({
+                message: 'No se ha podido guardar'
+            })
+            pusher.trigger('playerschannel', 'player-save', {
+                player:playerStored
+            });
+            return res.status(200).send({
+                player: playerStored
+            })
+        })
+           
+       
+        
     },
     getPlayers: function (req, res) {
         Jugador.find((err, players) => {

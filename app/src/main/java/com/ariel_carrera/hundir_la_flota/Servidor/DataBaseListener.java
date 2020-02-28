@@ -51,11 +51,11 @@ public class DataBaseListener {
     public void Connect(){
 
         if (!connected){
-            numJugadores++;
+
             PusherOptions options = new PusherOptions();
             options.setCluster("eu");
             Pusher pusher = new Pusher("6471bfe60094a6c3c7c1", options);
-
+            numJugadores++;
             pusher.connect(new ConnectionEventListener() {
                 @Override
                 public void onConnectionStateChange(ConnectionStateChange change) {
@@ -81,6 +81,7 @@ public class DataBaseListener {
     public Channel getChannel(){
         return channel;
     }
+
 
 
 }

@@ -21,26 +21,11 @@ import com.ariel_carrera.hundir_la_flota.Model.Player;
 import com.ariel_carrera.hundir_la_flota.R;
 import com.ariel_carrera.hundir_la_flota.Servidor.DataBaseListener;
 import com.ariel_carrera.hundir_la_flota.Servidor.Service;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
-import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
-import com.pusher.client.connection.ConnectionEventListener;
-import com.pusher.client.connection.ConnectionState;
-import com.pusher.client.connection.ConnectionStateChange;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
-import static com.ariel_carrera.hundir_la_flota.Servidor.Service.SERVICE;
 
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -51,7 +36,9 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
     private DataBase datos;
     private SQLiteDatabase db;
-    String pruebita = "Pruebita";
+
+
+    private SubscriptionEventListener subscriptionEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +52,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
         lista_jugadores = new ArrayList<Player>();
         listview = (ListView)findViewById(R.id.listViewRanking);
-        //final Service service = new Service();
         Service.getInstance().SetContext(getApplication());
         Service.getInstance().getData();
 
@@ -75,7 +61,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
             } catch (Exception ex){
 
             }
-            //service.downloadUrl("http://172.30.0.179:3700/api/get-players");
             lista_jugadores = Service.getInstance().leerDatos();
         }
         myAdapter = new MyAdapter(this,R.layout.ranking_item,lista_jugadores);
@@ -85,8 +70,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
         //DataBaseListener.getInstance();
 
-        if (!DataBaseListener.getInstance().isBindedRanking()){
-            DataBaseListener.getInstance().getChannel().bind("player-save", new SubscriptionEventListener() {
+            DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
 
                 @Override
                 public void onEvent(PusherEvent event) {
@@ -114,7 +98,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                     });
                 }
             });
-        }
 
 
     }
@@ -122,6 +105,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        DataBaseListener.getInstance().getChannel().unbind("player-save", subscriptionEventListener);
         Intent inicio = new Intent(RankingActivity.this, MainActivity.class);
         startActivity(inicio);
     }
@@ -138,6 +122,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed(){
-
+        DataBaseListener.getInstance().getChannel().unbind("player-save", subscriptionEventListener);
     }
 }

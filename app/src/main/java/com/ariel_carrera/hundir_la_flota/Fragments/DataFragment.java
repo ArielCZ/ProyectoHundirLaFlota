@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.ariel_carrera.hundir_la_flota.DataBase.DataBase;
 import com.ariel_carrera.hundir_la_flota.MainActivity;
 import com.ariel_carrera.hundir_la_flota.R;
+import com.ariel_carrera.hundir_la_flota.Servidor.Service;
 
 import org.w3c.dom.Text;
 
@@ -159,7 +160,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
                     myAlert.show();
                 } else {
                     boolean anadido;
-                    anadido = datos.insertarJugador(nombre,Integer.parseInt(txtIntentos.getText().toString()),tiempo);
+                    //anadido = datos.insertarJugador(nombre,Integer.parseInt(txtIntentos.getText().toString()),tiempo);
+                    anadido = Service.getInstance().guardar(nombre,Integer.parseInt(txtIntentos.getText().toString()),tiempo);
                     Intent inicio = new Intent(getActivity(),MainActivity.class);
                     startActivity(inicio);
 

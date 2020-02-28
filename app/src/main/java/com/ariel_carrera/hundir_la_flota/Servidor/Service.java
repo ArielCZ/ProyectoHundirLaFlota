@@ -7,12 +7,20 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ariel_carrera.hundir_la_flota.MainActivity;
 import com.ariel_carrera.hundir_la_flota.Model.Player;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +43,10 @@ public class Service {
 
     public static Service getInstance() {return SERVICE;}
 
+    public int numJugadores;
+
+    public int connection = 0;
+
     public void SetContext(Context context){
         this.context = context;
     }
@@ -42,6 +54,7 @@ public class Service {
 
     public void getData(){
         if (isConnected()){
+
             new DownloadWebpageTask().execute(serverURL);
         } else {
             Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
@@ -150,6 +163,52 @@ public class Service {
 
         return "";
 
+    }
+
+    public boolean guardar(String nombre,Integer intentos,int tiempo) {
+
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            String URL = "http://172.30.0.179:3700/api/save-player";
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("nombre", nombre);
+            jsonBody.put("intentos", intentos);
+            jsonBody.put("tiempo", tiempo);
+            final String requestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("VOLLEY", response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return  requestBody.getBytes("utf-8");
+                    } catch (Exception uee) {
+                        return null;
+                    }
+                }
+            };
+
+            requestQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 

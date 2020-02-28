@@ -1,75 +1,43 @@
 package com.ariel_carrera.hundir_la_flota;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
+
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
+
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ariel_carrera.hundir_la_flota.Adapter.MyAdapter;
-import com.ariel_carrera.hundir_la_flota.Fragments.DataFragment;
-import com.ariel_carrera.hundir_la_flota.Fragments.GameFragment;
-import com.ariel_carrera.hundir_la_flota.Model.Player;
 import com.ariel_carrera.hundir_la_flota.Servidor.DataBaseListener;
+import com.ariel_carrera.hundir_la_flota.Servidor.Global;
 import com.ariel_carrera.hundir_la_flota.Servidor.Service;
 import com.ariel_carrera.hundir_la_flota.Views.AcercaDeActivity;
 import com.ariel_carrera.hundir_la_flota.Views.AyudaActivity;
 import com.ariel_carrera.hundir_la_flota.Views.GameActivity;
 import com.ariel_carrera.hundir_la_flota.Views.RankingActivity;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import java.lang.reflect.Type;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import com.pusher.client.Pusher;
-import com.pusher.client.PusherOptions;
-import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
-import com.pusher.client.connection.ConnectionEventListener;
-import com.pusher.client.connection.ConnectionState;
-import com.pusher.client.connection.ConnectionStateChange;
+
+import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnJugar, btnRanking, btnAcercaDe, btnAyuda;
+    private GifImageView gifImageView;
+
+    private SubscriptionEventListener subscriptionEventListener;
 
     // Apartado del servidor
-    private String webPage = "";
-    private String serverURL = "http://172.30.0.179:3700/api/get-players";
 
     private Button btnServer;
     private TextView txtInfo;
@@ -97,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtInfo = (TextView) findViewById(R.id.txtInfo);
 
+        gifImageView = (GifImageView) findViewById(R.id.gif);
+        gifImageView.setVisibility(View.INVISIBLE);
+
+
         Service.getInstance().SetContext(getApplicationContext());
         Service.getInstance().isConnected();
         Service.getInstance().getData();
@@ -107,13 +79,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        if (!DataBaseListener.getInstance().isBindedMain()){
-            DataBaseListener.getInstance().getChannel().bind("player-save", new SubscriptionEventListener() {
-
+            DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
                 @Override
                 public void onEvent(PusherEvent event) {
                     System.out.println("Received event with data: " + event.toString());
-
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -123,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 try{
                                     Toast.makeText(getApplicationContext(), "Ha habido un cambio en el ranking", Toast.LENGTH_SHORT).show();
+                                    gifImageView.setVisibility(View.VISIBLE);
                                 } catch (Exception ex){
 
                                 }
@@ -131,11 +101,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     });
                 }
             });
-        }
 
         //DataBaseListener.getInstance().getChannel().unbind();
 
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -153,8 +124,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(AcercaDe);
                 break;
             case R.id.btnRanking:
+                DataBaseListener.getInstance().getChannel().unbind("player-save", subscriptionEventListener);
                 Intent Ranking = new Intent(this, RankingActivity.class);
                 startActivity(Ranking);
+
                 break;
             case R.id.btnServer:
 
@@ -171,6 +144,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent){
+        if (MotionEvent.ACTION_OUTSIDE == motionEvent.getAction()){
+            finish();
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
 
 
 }

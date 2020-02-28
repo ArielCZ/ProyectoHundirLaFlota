@@ -130,4 +130,16 @@
         android:textSize="20dp"
         />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif"
+        android:layout_width="57dp"
+        android:layout_height="185dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="132dp"
+        android:src="@drawable/updated"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnJugar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
