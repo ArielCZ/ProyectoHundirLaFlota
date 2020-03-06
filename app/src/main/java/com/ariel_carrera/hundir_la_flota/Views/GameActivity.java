@@ -20,7 +20,7 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-
+        // Mandar el post
 
 
     }
@@ -40,6 +40,12 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
     @Override
     public void onBackPressed(){
 
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        // Mandar otro post
     }
 
 }

@@ -62,6 +62,11 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
             }
             lista_jugadores = Service.getInstance().leerDatos();
+
+        }
+
+        if (lista_jugadores != null){
+
         }
         myAdapter = new MyAdapter(this,R.layout.ranking_item,lista_jugadores);
         listview.setAdapter(myAdapter);

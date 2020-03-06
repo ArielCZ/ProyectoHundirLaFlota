@@ -66,7 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtInfo = (TextView) findViewById(R.id.txtInfo);
 
         gifImageView = (GifImageView) findViewById(R.id.gif);
-        gifImageView.setVisibility(View.INVISIBLE);
+        if (Global.isUpdated){
+            gifImageView.setVisibility(View.INVISIBLE);
+        } else {
+            gifImageView.setVisibility(View.VISIBLE);
+        }
+
 
 
         Service.getInstance().SetContext(getApplicationContext());
@@ -76,9 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //DataBaseListener.getInstance();
         DataBaseListener.getInstance().Connect();
         txtInfo.setText(String.valueOf(DataBaseListener.getInstance().numJugadores));
-
-
-
             DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
                 @Override
                 public void onEvent(PusherEvent event) {
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 try{
                                     Toast.makeText(getApplicationContext(), "Ha habido un cambio en el ranking", Toast.LENGTH_SHORT).show();
                                     gifImageView.setVisibility(View.VISIBLE);
+                                    Global.setIsUpdated(false);
                                 } catch (Exception ex){
 
                                 }
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnRanking:
                 DataBaseListener.getInstance().getChannel().unbind("player-save", subscriptionEventListener);
+                Global.setIsUpdated(true);
                 Intent Ranking = new Intent(this, RankingActivity.class);
                 startActivity(Ranking);
 

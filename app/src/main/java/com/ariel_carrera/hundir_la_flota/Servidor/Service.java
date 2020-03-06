@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public class Service {
         }
     }
 
-    public List<Player> leerDatos(){
+    public List<Player> leerDatos() {
         if (webPage.contains("nombre")) {
             //Toast.makeText(this, webPage,Toast.LENGTH_LONG).show();
             Gson gson = new Gson();
@@ -124,45 +125,8 @@ public class Service {
             playerList = Arrays.asList(players);
             return playerList;
         } else {
-            return  null;
+            return new ArrayList<Player>();
         }
-    }
-
-
-    public String guardar(String nombre,Integer intentos,String tiempo) {
-        try {
-            //Url
-            URL url = new URL(serverURL + "save-player");
-            //Open connection
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            //Set Request Method
-            con.setReadTimeout(10000);
-            con.setConnectTimeout(15000);
-            con.setRequestMethod("POST");
-            con.setDoInput(true);
-            con.setDoOutput(true);
-
-            String jsonInputString = "{'name': 'Upendra ', 'job ': 'Programmer'}";
-
-            OutputStream os = con.getOutputStream();
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
-
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
-            }
-            System.out.println(response.toString());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return "";
-
     }
 
     public boolean guardar(String nombre,Integer intentos,int tiempo) {
@@ -175,6 +139,49 @@ public class Service {
             jsonBody.put("nombre", nombre);
             jsonBody.put("intentos", intentos);
             jsonBody.put("tiempo", tiempo);
+            final String requestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("VOLLEY", response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return  requestBody.getBytes("utf-8");
+                    } catch (Exception uee) {
+                        return null;
+                    }
+                }
+            };
+
+            requestQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean connectPlayer(){
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            String URL = "http://172.30.0.179:3700/api/save-player";
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("nombre", "player");
             final String requestBody = jsonBody.toString();
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
