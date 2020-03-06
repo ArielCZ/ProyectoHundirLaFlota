@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Battleship </string>
+    <string name="Jugar">Play </string>
+    <string name="Ranking">Ranking </string>
+    <string name="Ayuda">Help </string>
+    <string name="AcercaDe">About </string>
+    <string name="titulo">Battleship </string>
+    <string name="volver">Back </string>
+    <string name="instrucciones">Game instructions </string>
+    <string name="Autor">Developed by: Ariel Carrera, Jon Cantero, Dagner Ramos</string>
+    <string name="Modulo">Multimedia programming and mobile devices </string>
+    <string name="curso">2nd Multiplatform application development</string>
+    <string name="ranking">Ranking </string>
+    <string name="rankingNombre">Name </string>
+    <string name="rankingIntentos">No. Attempts</string>
+    <string name="rankingTiempo">Time </string>
+    <string name="intentos">Number of attempts </string>
+    <string name="tiempo">Time </string>
+    <string name="barco">Ship </string>
+    <string name="guardar">Save Game </string>
+    <string name="nombreGuardar">Enter your name </string>
+    <string name="comoJugar">The game consists of sinking all the ships that are on the board. For this, the player will fire bombs for each square with a limit of 40 attempts.
+    </string>
+    <string name="comoJugar2">For each shot, if the box is blank it will respond "water" and cannot be pressed again. If part of a ship is found in the box, it will respond "touched" and the player is entitled to a new shot.
+    </string>
+    <string name="comoJugar3">If the last part of a ship will respond "sunk" in the box, the number of remaining ships will be updated and it is also entitled to a new shot.
+    </string>
+</resources>
