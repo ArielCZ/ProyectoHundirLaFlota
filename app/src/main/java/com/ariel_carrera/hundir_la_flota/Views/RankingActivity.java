@@ -2,16 +2,12 @@ package com.ariel_carrera.hundir_la_flota.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ariel_carrera.hundir_la_flota.Adapter.MyAdapter;
@@ -53,7 +49,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         lista_jugadores = new ArrayList<Player>();
         listview = (ListView)findViewById(R.id.listViewRanking);
         Service.getInstance().SetContext(getApplication());
-        Service.getInstance().getData();
+        Service.getInstance().getDataPlayers();
 
         if (Service.getInstance().isConnected()){
             try{
@@ -85,7 +81,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void run() {
                             DataBaseListener.getInstance().setBindedRanking(true);
-                            Service.getInstance().getData();
+                            Service.getInstance().getDataPlayers();
                             if (Service.getInstance().isConnected()){
 
                                 try{

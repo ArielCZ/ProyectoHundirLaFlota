@@ -50,14 +50,30 @@ var controller = {
     },
 
     getOnlinePlayers : function(req, res){
-        var num = this.onlinePlayers.lenght;
+       
+        
         return res.status(200).send({
-            data: num
+            data: onlinePlayers.length
         });
     },
 
     addOnlinePlayer: function(req, res){
-        this.onlinePlayers.push('jugador');
+        onlinePlayers.push('jugador');
+        pusher.trigger('playerschannel', 'connect-player', {
+            num: onlinePlayers.length
+        });
+        return res.status(200).send({
+            data: onlinePlayers.length
+        })
+    },
+    disconnectPlayer: function(req, res){
+        onlinePlayers.pop();
+        pusher.trigger('playerschannel', 'disconnect-player',{
+            num: onlinePlayers.length
+        })
+        return res.status(200).send({
+            data: onlinePlayers.length
+        })
     }
 
 

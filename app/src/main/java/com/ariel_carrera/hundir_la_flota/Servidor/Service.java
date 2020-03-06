@@ -1,6 +1,7 @@
 package com.ariel_carrera.hundir_la_flota.Servidor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -38,25 +39,35 @@ public class Service {
     private Context context;
 
     static String webPage = "";
-    static String serverURL = "http://172.30.0.179:3700/api/get-players";
+    static String webPageOnline = "";
+    static String getPlayersUrl = "get-players";
+    static String getOnlinePlayersUrl = "get-online-players";
+    static String serverURL = "http://172.30.0.179:3700/api/";
+    static String saveOnlinePlayer = "save-online-player";
+    static String deleteOnlinePlayer = "delete-online-player";
 
     public static final Service SERVICE = new Service();
 
     public static Service getInstance() {return SERVICE;}
-
-    public int numJugadores;
-
-    public int connection = 0;
 
     public void SetContext(Context context){
         this.context = context;
     }
 
 
-    public void getData(){
+    public void getDataPlayers(){
         if (isConnected()){
 
-            new DownloadWebpageTask().execute(serverURL);
+            new DownloadWebpageTask().execute(serverURL+getPlayersUrl);
+        } else {
+            Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void getDataOnlinePlayers(){
+        if (isConnected()){
+
+            new DownloadWebpageTaskOnline().execute(serverURL+getOnlinePlayersUrl);
         } else {
             Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
         }
@@ -83,10 +94,21 @@ public class Service {
         }
     }
 
+    public class DownloadWebpageTaskOnline extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls){
+            try {
+                return downloadUrlOnline(urls[0]);
+            } catch (IOException e){
+                return "No se puede recuperar la página web. URL puede no ser válida";
+            }
+        }
+    }
+
     public String downloadUrl(String myurl) throws IOException{
         InputStream is = null;
         try {
-            URL url = new URL(serverURL);
+            URL url = new URL(serverURL+getPlayersUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
@@ -112,11 +134,37 @@ public class Service {
         }
     }
 
+    public String downloadUrlOnline(String myurl) throws IOException{
+        InputStream is = null;
+        try {
+            URL url = new URL(serverURL+getOnlinePlayersUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000);
+            conn.setConnectTimeout(15000);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Inicia la consulta
+            conn.connect();
+            int response = conn.getResponseCode();
+            Log.d("DT: ", "La respuesta es: " + response);
+            is = conn.getInputStream();
+            // Para descargar la página web completa
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            webPageOnline = "";
+            String data = "";
+            while ((data = reader.readLine()) != null){
+                webPageOnline += data +"\n";
+            }
+            return webPageOnline;
+        } finally {
+            if (is != null){
+                is.close();
+            }
+        }
+    }
     public List<Player> leerDatos() {
         if (webPage.contains("nombre")) {
-            //Toast.makeText(this, webPage,Toast.LENGTH_LONG).show();
             Gson gson = new Gson();
-            //String json = webPage.substring(webPage.indexOf("["),webPage.lastIndexOf("]")+1);
             JsonParser jsonParser = new JsonParser();
             JsonObject jsonObject = (JsonObject) jsonParser.parse(webPage);
             JsonElement jsonElement = (JsonElement) jsonObject.get("players");
@@ -179,10 +227,7 @@ public class Service {
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-            String URL = "http://172.30.0.179:3700/api/save-player";
-            JSONObject jsonBody = new JSONObject();
-            jsonBody.put("nombre", "player");
-            final String requestBody = jsonBody.toString();
+            String URL = serverURL+saveOnlinePlayer;
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 @Override
@@ -202,11 +247,55 @@ public class Service {
 
                 @Override
                 public byte[] getBody() {
-                    try {
-                        return  requestBody.getBytes("utf-8");
-                    } catch (Exception uee) {
-                        return null;
-                    }
+                    return null;
+                }
+            };
+
+            requestQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public int getOnlinePlayers(){
+        if (webPageOnline.contains("data")){
+            Gson gson = new Gson();
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(webPageOnline);
+            JsonElement jsonElement = (JsonElement) jsonObject.get("data");
+            int numero = Integer.parseInt(jsonElement.toString());
+            return numero;
+        }
+        return 0;
+    }
+
+    public boolean disconnectPlayer(){
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+            String URL = serverURL+deleteOnlinePlayer;
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("VOLLEY", response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() {
+                    return null;
                 }
             };
 

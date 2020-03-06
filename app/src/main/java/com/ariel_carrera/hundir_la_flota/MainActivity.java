@@ -1,20 +1,14 @@
 package com.ariel_carrera.hundir_la_flota;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GifImageView gifImageView;
 
     private SubscriptionEventListener subscriptionEventListener;
+    private SubscriptionEventListener subscriptionEventListenerOnline;
+    private SubscriptionEventListener subscriptionEventListenerOffline;
 
     // Apartado del servidor
 
-    private Button btnServer;
     private TextView txtInfo;
 
     @Override
@@ -59,10 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnRanking = (Button) findViewById(R.id.btnRanking);
         btnRanking.setOnClickListener(this);
 
-
-        btnServer = (Button) findViewById(R.id.btnServer);
-        btnServer.setOnClickListener(this);
-
         txtInfo = (TextView) findViewById(R.id.txtInfo);
 
         gifImageView = (GifImageView) findViewById(R.id.gif);
@@ -72,15 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             gifImageView.setVisibility(View.VISIBLE);
         }
 
-
+        DataBaseListener.getInstance().Connect();
 
         Service.getInstance().SetContext(getApplicationContext());
         Service.getInstance().isConnected();
-        Service.getInstance().getData();
-
-        //DataBaseListener.getInstance();
-        DataBaseListener.getInstance().Connect();
-        txtInfo.setText(String.valueOf(DataBaseListener.getInstance().numJugadores));
+        Service.getInstance().getDataPlayers();
             DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
                 @Override
                 public void onEvent(PusherEvent event) {
@@ -89,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void run() {
                             DataBaseListener.getInstance().setBindedMain(true);
-                            Service.getInstance().getData();
+                            Service.getInstance().getDataPlayers();
                             if (Service.getInstance().isConnected()){
 
                                 try{
@@ -105,40 +92,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
-        //DataBaseListener.getInstance().getChannel().unbind();
+        DataBaseListener.getInstance().getChannel().bind("connect-player", subscriptionEventListenerOnline = new SubscriptionEventListener() {
+            @Override
+            public void onEvent(PusherEvent event) {
+                System.out.println("Received event with data: " + event.toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+
+                            Service.getInstance().getDataOnlinePlayers();
+                            Thread.sleep(100);
+                            String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
+                            txtInfo.setText(numPlayers);
+                            Toast.makeText(getApplicationContext(), "Ha entrado un jugador", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+            }
+        });
+
+        DataBaseListener.getInstance().getChannel().bind("disconnect-player", subscriptionEventListenerOffline = new SubscriptionEventListener() {
+            @Override
+            public void onEvent(PusherEvent event) {
+                System.out.println("Received event with data: " + event.toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Service.getInstance().getDataOnlinePlayers();
+                            Thread.sleep(100);
+                            String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
+                            txtInfo.setText(numPlayers);
+                            Toast.makeText(getApplicationContext(), "Se ha desconectado un jugador", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+            }
+        });
 
     }
+    // Desbindea los players
+    public void unbindOnlinePlayers(){
+        DataBaseListener.getInstance().getChannel().unbind("connect-player", subscriptionEventListenerOnline);
+        DataBaseListener.getInstance().getChannel().unbind("disconnect-player", subscriptionEventListenerOffline);
 
-
-
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnJugar:
+                unbindOnlinePlayers();
                 Intent game = new Intent(this, GameActivity.class);
                 startActivity(game);
                 break;
             case R.id.btnAyuda:
+                unbindOnlinePlayers();
                 Intent ayuda = new Intent(this, AyudaActivity.class);
                 startActivity(ayuda);
                 break;
             case R.id.btnAcercaDe:
+                unbindOnlinePlayers();
                 Intent AcercaDe = new Intent(this, AcercaDeActivity.class);
                 startActivity(AcercaDe);
                 break;
             case R.id.btnRanking:
                 DataBaseListener.getInstance().getChannel().unbind("player-save", subscriptionEventListener);
+                unbindOnlinePlayers();
                 Global.setIsUpdated(true);
                 Intent Ranking = new Intent(this, RankingActivity.class);
                 startActivity(Ranking);
-
                 break;
-            case R.id.btnServer:
-
             default:
                 break;
         }
-
     }
 
     @Override
@@ -158,4 +193,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        try{
+            Service.getInstance().getDataOnlinePlayers();
+            Thread.sleep(200);
+
+            String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
+            txtInfo.setText(numPlayers);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

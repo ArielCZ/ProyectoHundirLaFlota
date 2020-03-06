@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.ariel_carrera.hundir_la_flota.Fragments.DataFragment;
 import com.ariel_carrera.hundir_la_flota.Fragments.GameFragment;
 import com.ariel_carrera.hundir_la_flota.R;
+import com.ariel_carrera.hundir_la_flota.Servidor.Service;
 
 
 public class GameActivity extends FragmentActivity implements GameFragment.DataListener {
@@ -19,9 +20,7 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        // Mandar el post
-
+        Service.getInstance().connectPlayer();
 
     }
 
@@ -39,13 +38,23 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
 
     @Override
     public void onBackPressed(){
-
     }
 
     @Override
     public void onDestroy(){
         super.onDestroy();
-        // Mandar otro post
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        try{
+            Thread.sleep(100);
+            Service.getInstance().disconnectPlayer();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
