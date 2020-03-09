@@ -34,6 +34,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Service {
     private Context context;
@@ -55,10 +56,10 @@ public class Service {
     }
 
 
-    public void getDataPlayers(){
+    public void getDataPlayers() throws ExecutionException, InterruptedException {
         if (isConnected()){
 
-            new DownloadWebpageTask().execute(serverURL+getPlayersUrl);
+            new DownloadWebpageTask().execute(serverURL+getPlayersUrl).get();
         } else {
             Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
         }
@@ -67,7 +68,13 @@ public class Service {
     public void getDataOnlinePlayers(){
         if (isConnected()){
 
-            new DownloadWebpageTaskOnline().execute(serverURL+getOnlinePlayersUrl);
+            try {
+                new DownloadWebpageTaskOnline().execute(serverURL+getOnlinePlayersUrl).get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             Toast.makeText(this.context, "Error al conectarse al servicio", Toast.LENGTH_SHORT).show();
         }
@@ -110,8 +117,8 @@ public class Service {
         try {
             URL url = new URL(serverURL+getPlayersUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(1000);
+            conn.setConnectTimeout(1500);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
             // Inicia la consulta
@@ -139,8 +146,8 @@ public class Service {
         try {
             URL url = new URL(serverURL+getOnlinePlayersUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(1000);
+            conn.setConnectTimeout(1500);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
             // Inicia la consulta

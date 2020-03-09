@@ -21,6 +21,7 @@ import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
@@ -49,7 +50,13 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         lista_jugadores = new ArrayList<Player>();
         listview = (ListView)findViewById(R.id.listViewRanking);
         Service.getInstance().SetContext(getApplication());
-        Service.getInstance().getDataPlayers();
+        try {
+            Service.getInstance().getDataPlayers();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if (Service.getInstance().isConnected()){
             try{
@@ -81,7 +88,13 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void run() {
                             DataBaseListener.getInstance().setBindedRanking(true);
-                            Service.getInstance().getDataPlayers();
+                            try {
+                                Service.getInstance().getDataPlayers();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             if (Service.getInstance().isConnected()){
 
                                 try{

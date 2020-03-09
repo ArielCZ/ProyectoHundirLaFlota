@@ -22,6 +22,8 @@ import com.ariel_carrera.hundir_la_flota.Views.RankingActivity;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+import java.util.concurrent.ExecutionException;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -67,8 +69,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Service.getInstance().SetContext(getApplicationContext());
         Service.getInstance().isConnected();
-        Service.getInstance().getDataPlayers();
-            DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
+        try {
+            Service.getInstance().getDataPlayers();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        DataBaseListener.getInstance().getChannel().bind("player-save", subscriptionEventListener = new SubscriptionEventListener() {
                 @Override
                 public void onEvent(PusherEvent event) {
                     System.out.println("Received event with data: " + event.toString());
@@ -76,7 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void run() {
                             DataBaseListener.getInstance().setBindedMain(true);
-                            Service.getInstance().getDataPlayers();
+                            try {
+                                Service.getInstance().getDataPlayers();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             if (Service.getInstance().isConnected()){
 
                                 try{
@@ -102,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try{
 
                             Service.getInstance().getDataOnlinePlayers();
-                            Thread.sleep(100);
                             String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
                             txtInfo.setText(numPlayers);
                             Toast.makeText(getApplicationContext(), "Ha entrado un jugador", Toast.LENGTH_SHORT).show();
@@ -125,7 +138,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         try{
                             Service.getInstance().getDataOnlinePlayers();
-                            Thread.sleep(100);
                             String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
                             txtInfo.setText(numPlayers);
                             Toast.makeText(getApplicationContext(), "Se ha desconectado un jugador", Toast.LENGTH_SHORT).show();
@@ -198,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
         try{
             Service.getInstance().getDataOnlinePlayers();
-            Thread.sleep(200);
 
             String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
             txtInfo.setText(numPlayers);
