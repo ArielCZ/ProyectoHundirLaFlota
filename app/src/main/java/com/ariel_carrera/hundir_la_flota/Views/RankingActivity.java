@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ariel_carrera.hundir_la_flota.Adapter.MyAdapter;
 import com.ariel_carrera.hundir_la_flota.DataBase.DataBase;
@@ -103,7 +102,6 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                                     myAdapter = new MyAdapter(getApplicationContext(),R.layout.ranking_item,lista_jugadores);
                                     listview.setAdapter(myAdapter);
                                     myAdapter.notifyDataSetChanged();
-                                    Toast.makeText(getApplicationContext(), "Se ha agregado una nueva puntuación", Toast.LENGTH_SHORT).show();
                                 } catch (Exception ex){
 
                                 }

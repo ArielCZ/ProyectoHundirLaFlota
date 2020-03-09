@@ -62,7 +62,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\Ariel Carrera\AndroidStudioProjects\Hundir_La_Flota\app\src\main\res\drawable\acorazado.png" />
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="157ca6" />
+                                      <entry key="foregroundImage" value="C:\Users\Ariel Carrera\AndroidStudioProjects\ProyectoHundirLaFlota\app\src\main\res\drawable\acorazado.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

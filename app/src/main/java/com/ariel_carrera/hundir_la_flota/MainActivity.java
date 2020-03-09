@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ariel_carrera.hundir_la_flota.Servidor.DataBaseListener;
 import com.ariel_carrera.hundir_la_flota.Servidor.Global;
@@ -94,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if (Service.getInstance().isConnected()){
 
                                 try{
-                                    Toast.makeText(getApplicationContext(), "Ha habido un cambio en el ranking", Toast.LENGTH_SHORT).show();
                                     gifImageView.setVisibility(View.VISIBLE);
                                     Global.setIsUpdated(false);
                                 } catch (Exception ex){
@@ -118,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Service.getInstance().getDataOnlinePlayers();
                             String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
                             txtInfo.setText(numPlayers);
-                            Toast.makeText(getApplicationContext(), "Ha entrado un jugador", Toast.LENGTH_SHORT).show();
                         } catch (Exception e){
                             e.printStackTrace();
                         }
@@ -140,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Service.getInstance().getDataOnlinePlayers();
                             String numPlayers = String.valueOf(Service.getInstance().getOnlinePlayers());
                             txtInfo.setText(numPlayers);
-                            Toast.makeText(getApplicationContext(), "Se ha desconectado un jugador", Toast.LENGTH_SHORT).show();
+
                         } catch (Exception e){
                             e.printStackTrace();
                         }
