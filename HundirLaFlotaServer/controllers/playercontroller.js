@@ -16,7 +16,6 @@ var controller = {
         jugador.nombre = params.nombre;
         jugador.intentos = params.intento;
         jugador.tiempo = params.tiempo;
-        jugador.image = params.image;
         jugador.save((err, playerStored)=>{
             if (err) return res.status(500).send({
                 message: 'Error al guardar'

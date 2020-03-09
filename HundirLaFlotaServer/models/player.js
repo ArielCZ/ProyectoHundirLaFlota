@@ -11,9 +11,6 @@ var jugadorSchema = Schema({
     },
     tiempo:{
         type: Number,
-    },
-    image:{
-        type: Number,
     }
 })
 module.exports = mongoose.model('jugador', jugadorSchema);
