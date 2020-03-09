@@ -36,16 +36,18 @@ var controller = {
         
     },
     getPlayers: function (req, res) {
-        Jugador.find((err, players) => {
-            if (err) return res.status(500).send({
-                message: 'Error al devolver los jugadores'
-            });
-            if (!players) return res.status(404).send({
-                message: 'No hay players que mostrar'
-            });
-            return res.status(200).send({
-                players
-            });
+        Jugador.find({
+            
+        }).sort({intentos: 1, tiempo: 1}).exec((err, players) =>{
+                if (err) return res.status(500).send({
+                    message: 'Error al devolver los jugadores'
+                });
+                if (!players) return res.status(404).send({
+                    message: 'No hay players que mostrar'
+                });
+                return res.status(200).send({
+                    players
+            })
         });
     },
 
