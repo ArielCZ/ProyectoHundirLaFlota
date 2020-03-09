@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +18,7 @@
         android:layout_marginEnd="131dp"
         android:layout_marginBottom="44dp"
         android:background="@drawable/rounded_buttons"
-        android:drawableLeft="@android:drawable/ic_media_play"
+        android:drawableStart="@android:drawable/ic_media_play"
         android:text="@string/Jugar"
         android:textColor="@color/colorPrimaryText"
         android:textStyle="bold"
@@ -85,7 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/imagenapp" />
+        app:srcCompat="@drawable/imagenapp"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/textView"
@@ -97,7 +99,7 @@
         android:gravity="center_horizontal"
         android:text="@string/titulo"
         android:textColor="@color/icons"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,9 +121,9 @@
         android:layout_height="24dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
-        android:text="1"
+        android:text="@string/_1"
         android:textColor="@color/icons"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -131,10 +133,41 @@
         android:layout_height="20dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="11dp"
-        android:text="Players Ingame:"
+        android:text="@string/players_ingame"
         android:textColor="@color/colorVerde"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txtInfo"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab"
+        android:layout_width="33dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="8dp"
+        app:fab_addButtonColorNormal="@color/colorPrimaryLight"
+        app:fab_addButtonSize="mini"
+        app:fab_expandDirection="down"
+        app:fab_labelStyle="@style/etiqueta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbSpanish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/colorPrimaryLight"
+            app:fab_icon="@drawable/es"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_colorNormal="@color/colorPrimaryLight"
+            app:fab_icon="@drawable/en" />
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

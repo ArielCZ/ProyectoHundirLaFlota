@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +21,12 @@ import com.ariel_carrera.hundir_la_flota.Views.AcercaDeActivity;
 import com.ariel_carrera.hundir_la_flota.Views.AyudaActivity;
 import com.ariel_carrera.hundir_la_flota.Views.GameActivity;
 import com.ariel_carrera.hundir_la_flota.Views.RankingActivity;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.pusher.client.channel.PusherEvent;
 import com.pusher.client.channel.SubscriptionEventListener;
 
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -34,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SubscriptionEventListener subscriptionEventListenerOnline;
     private SubscriptionEventListener subscriptionEventListenerOffline;
 
+    private FloatingActionsMenu fab;
+    private FloatingActionButton fbSpanish, fbEnglish;
+
     // Apartado del servidor
 
     private TextView txtInfo;
@@ -42,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fab = (FloatingActionsMenu)findViewById(R.id.fab);
+
+        fbSpanish = (FloatingActionButton)findViewById(R.id.fbSpanish);
+        fbEnglish = (FloatingActionButton)findViewById(R.id.fbEnglish);
+
+        fbSpanish.setOnClickListener(this);
+        fbEnglish.setOnClickListener(this);
 
         btnJugar = (Button) findViewById(R.id.btnJugar);
         btnJugar.setOnClickListener(this);
@@ -63,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             gifImageView.setVisibility(View.VISIBLE);
         }
+
+
 
         DataBaseListener.getInstance().Connect();
 
@@ -180,6 +199,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent Ranking = new Intent(this, RankingActivity.class);
                 startActivity(Ranking);
                 break;
+            case R.id.fbSpanish:
+                changeLanguage("es");
+                fab.collapse();
+                recreate();
+                break;
+            case R.id.fbEnglish:
+                changeLanguage("en");
+                recreate();
+                fab.collapse();
+                break;
             default:
                 break;
         }
@@ -213,5 +242,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void changeLanguage(String locale){
+        if (locale == "es"){
+            Configuration config;
+            config = new Configuration(getResources().getConfiguration());
+            config.locale = new Locale("es");
+            getResources().updateConfiguration(config,getResources().getDisplayMetrics());
+        }else{
+            Configuration config;
+            config = new Configuration(getResources().getConfiguration());
+            config.locale = (Locale.ENGLISH);
+            getResources().updateConfiguration(config,getResources().getDisplayMetrics());
+        }
+
     }
 }
