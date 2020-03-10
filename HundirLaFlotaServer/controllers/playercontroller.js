@@ -14,7 +14,7 @@ var controller = {
         var jugador = new Jugador();
         var params = req.body;
         jugador.nombre = params.nombre;
-        jugador.intentos = params.intento;
+        jugador.intentos = params.intentos;
         jugador.tiempo = params.tiempo;
         jugador.save((err, playerStored)=>{
             if (err) return res.status(500).send({
