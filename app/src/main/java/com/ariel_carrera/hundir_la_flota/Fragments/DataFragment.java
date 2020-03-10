@@ -1,7 +1,6 @@
 package com.ariel_carrera.hundir_la_flota.Fragments;
 
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -106,18 +105,14 @@ public class DataFragment extends Fragment implements View.OnClickListener {
         txtEstadoBarco.setText(estadoBarco);
         txtIntentos.setText(String.valueOf(numIntentos));
         checkGame();
+        String estado = getString(R.string.agua);
+        String estado2 = getString(R.string.tocado);
 
-        switch (estadoBarco){
-            case "Agua":
-                imvState.setImageDrawable(getResources().getDrawable(R.drawable.agua));
-                break;
-            case "Tocado":
-                imvState.setImageDrawable(getResources().getDrawable(R.drawable.tocado));
-                break;
-                default:
-                    break;
+        if (estadoBarco.equals(estado)){
+            imvState.setImageDrawable(getResources().getDrawable(R.drawable.agua));
+        }else{
+            imvState.setImageDrawable(getResources().getDrawable(R.drawable.tocado));
         }
-
     }
 
 
@@ -139,17 +134,17 @@ public class DataFragment extends Fragment implements View.OnClickListener {
                 String nombre = etNombre.getText().toString();
                 if (nombre.equals("")){
                     AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                    alert.setTitle("Aviso");
-                    alert.setMessage("Debes introducir un nombre para poder guardar");
+                    alert.setTitle(getString(R.string.aviso));
+                    alert.setMessage(getString(R.string.textoGuardar));
                     alert.setCancelable(false);
 
-                    alert.setNegativeButton("Aceptar", new DialogInterface.OnClickListener() {
+                    alert.setNegativeButton(getString(R.string.aceptar), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                         }
                     });
-                    alert.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+                    alert.setPositiveButton(getString(R.string.salir), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent inicio = new Intent(getActivity(), MainActivity.class);
@@ -160,7 +155,6 @@ public class DataFragment extends Fragment implements View.OnClickListener {
                     myAlert.show();
                 } else {
                     boolean anadido;
-                    //anadido = datos.insertarJugador(nombre,Integer.parseInt(txtIntentos.getText().toString()),tiempo);
                     anadido = Service.getInstance().guardar(nombre,Integer.parseInt(txtIntentos.getText().toString()),tiempo);
                     Intent inicio = new Intent(getActivity(),MainActivity.class);
                     startActivity(inicio);

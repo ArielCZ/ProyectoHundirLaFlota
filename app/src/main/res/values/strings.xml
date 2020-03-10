@@ -17,6 +17,17 @@
     <string name="intentos">Número de intentos</string>
     <string name="tiempo">Tiempo</string>
     <string name="barco">Barco</string>
+    <string name="aviso">Aviso</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="salir">Salir</string>
+    <string name="tocado">Tocado</string>
+    <string name="agua">Agua</string>
+    <string name="si">Si</string>
+    <string name="reintentar">No se permiten más intentos ¿Quieres volver a intentarlo?</string>
+
+    <string name="hundido">Hundido</string>
+    <string name="hundidoBarco">Hundido barco de </string>
+    <string name="textoGuardar">Debes introducir un nombre para poder guardar</string>
     <string name="guardar">Guardar Partida</string>
     <string name="nombreGuardar">Introduce tu nombre</string>
     <string name="comoJugar">El juego consiste en hundir todos los barcos que se encuentran en el tablero.
@@ -29,8 +40,6 @@
     el números de barcos restantes y también tiene derecho a un nuevo disparo.
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_1">1</string>
-    <string name="players_ingame">Players Ingame:</string>
+    <string name="players_ingame">Jugando ahora:</string>
 </resources>

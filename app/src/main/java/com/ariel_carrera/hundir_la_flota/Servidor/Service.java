@@ -1,7 +1,6 @@
 package com.ariel_carrera.hundir_la_flota.Servidor;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -14,7 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.ariel_carrera.hundir_la_flota.MainActivity;
 import com.ariel_carrera.hundir_la_flota.Model.Player;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -27,8 +25,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;

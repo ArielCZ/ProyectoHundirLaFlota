@@ -21,8 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.ariel_carrera.hundir_la_flota.MainActivity;
 import com.ariel_carrera.hundir_la_flota.Model.Boat;
 import com.ariel_carrera.hundir_la_flota.R;
@@ -443,7 +441,7 @@ public class GameFragment extends Fragment {
                             for (int k = 0; k < barcos.size(); k++) {
                                 if (barcos.get(k).coordenadas.contains(new Point(x, y))) {
                                     barcos.get(k).tocado++;
-                                    estadoBarco = "Tocado";
+                                    estadoBarco = getString(R.string.tocado);
                                 } else {
                                     agua++;
 
@@ -456,7 +454,7 @@ public class GameFragment extends Fragment {
                                         if (ivCell[x][y].getTag().equals(R.drawable.boat)){
                                             callback.sendState(estadoBarco,numIntentos);
                                         } else {
-                                            callback.sendState("Agua",numIntentos);
+                                            callback.sendState(getString(R.string.agua),numIntentos);
                                         }
 
                                     } else {
@@ -466,7 +464,7 @@ public class GameFragment extends Fragment {
                                 } else {
                                     if (counter != 1){
                                         numIntentos++;
-                                        callback.sendState("Agua",numIntentos);
+                                        callback.sendState(getString(R.string.agua),numIntentos);
                                     }
                                 }
 
@@ -474,7 +472,7 @@ public class GameFragment extends Fragment {
 
                                 if (barcos.get(k).tocado == barcos.get(k).getLongitud()) {
                                     barcos.get(k).setHundido(true);
-                                    estadoBarco = "Hundido barco de " + barcos.get(k).getLongitud();
+                                    estadoBarco = getString(R.string.hundidoBarco) +" "+ barcos.get(k).getLongitud();
                                     for(Point p : barcos.get(k).coordenadas){
                                         ivCell[p.x][p.y].setImageDrawable(getResources().getDrawable(R.drawable.destruido));
                                     }
@@ -504,18 +502,18 @@ public class GameFragment extends Fragment {
                                 }
                                 if (numIntentos > 39){
                                     AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-                                    alert.setTitle("Aviso");
-                                    alert.setMessage("No se permiten más intentos ¿Quieres volver a intentarlo?");
+                                    alert.setTitle(getString(R.string.aviso));
+                                    alert.setMessage(getString(R.string.reintentar));
                                     alert.setCancelable(false);
 
-                                    alert.setNegativeButton("Sí", new DialogInterface.OnClickListener() {
+                                    alert.setNegativeButton(getString(R.string.si), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent juego = new Intent(getActivity(), GameActivity.class);
                                             startActivity(juego);
                                         }
                                     });
-                                    alert.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+                                    alert.setPositiveButton(getString(R.string.salir), new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent inicio = new Intent(getActivity(), MainActivity.class);

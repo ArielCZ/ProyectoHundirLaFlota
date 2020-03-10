@@ -17,7 +17,17 @@
     <string name="rankingTiempo">Time </string>
     <string name="intentos">Number of attempts </string>
     <string name="tiempo">Time </string>
+    <string name="aviso">Warning</string>
+    <string name="aceptar">Accept</string>
+    <string name="salir">Exit</string>
+    <string name="textoGuardar">You must enter a name to save</string>
     <string name="barco">Ship </string>
+    <string name="tocado">Touched</string>
+    <string name="agua">Water</string>
+    <string name="si">Yes</string>
+    <string name="reintentar">No more attempts left Do you want to try again?</string>
+    <string name="hundido">Sinked</string>
+    <string name="hundidoBarco">Sunken ship of </string>
     <string name="guardar">Save Game </string>
     <string name="nombreGuardar">Enter your name </string>
     <string name="comoJugar">The game consists of sinking all the ships that are on the board. For this, the player will fire bombs for each square with a limit of 40 attempts.
@@ -26,4 +36,6 @@
     </string>
     <string name="comoJugar3">If the last part of a ship will respond "sunk" in the box, the number of remaining ships will be updated and it is also entitled to a new shot.
     </string>
+    <string name="players_ingame">Players Ingame:</string>
+    <string name="_1">1</string>
 </resources>

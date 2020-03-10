@@ -20,7 +20,6 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Service.getInstance().connectPlayer();
 
     }
 
@@ -48,13 +47,14 @@ public class GameActivity extends FragmentActivity implements GameFragment.DataL
     @Override
     public void onPause(){
         super.onPause();
-        try{
-            Thread.sleep(100);
-            Service.getInstance().disconnectPlayer();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Service.getInstance().disconnectPlayer();
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Service.getInstance().connectPlayer();
     }
 
 }
